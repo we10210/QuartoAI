@@ -1,0 +1,27 @@
+import numpy as np
+import torch
+import MCTS
+from model import Net
+
+MCTS_SEARCHES = 10
+MCTS_BATCH_SIZE = 16
+
+if __name__ == '__main__':
+    '''
+    net 
+    input:  [地圖資訊(4*4*4)] , 選擇的棋子(0~15, 16則未選棋)
+    output: 0~15(棋子或位置皆是) 
+    '''
+    state = 
+    
+    net = Net(input_shape = (2, 4, 4, 4 ), actions_n = 16).to('cpu')
+    net.load_state_dict(torch.load("saves/best_002_00900.dat", map_location='cpu'))
+    
+    probs, _ = net(state, chess)
+    # mcts = MCTS.MCTS()
+    # mcts.search_batch(MCTS_SEARCHES, MCTS_BATCH_SIZE, state,
+    #                                             0, net, device = 'cpu')
+    # probs, _ = mcts.get_policy_value(state, tau=0)
+    action = np.random.choice(4 * 4, p=probs)
+    
+    print(action)
